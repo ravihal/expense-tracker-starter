@@ -60,6 +60,10 @@ function App() {
     setCategory("food");
   };
 
+  const handleDelete = (id) => {
+    setTransactions(transactions.filter(t => t.id !== id));
+  };
+
 
   return (
     <div className="app">
@@ -132,7 +136,7 @@ function App() {
               <th>Description</th>
               <th>Category</th>
               <th>Amount</th>
-
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -144,7 +148,9 @@ function App() {
                 <td className={t.type === "income" ? "income-amount" : "expense-amount"}>
                   {t.type === "income" ? "+" : "-"}${t.amount}
                 </td>
-
+                <td>
+                  <button className="delete-btn" onClick={() => handleDelete(t.id)}>Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>
